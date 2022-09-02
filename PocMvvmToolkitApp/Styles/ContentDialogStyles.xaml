@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:PocMvvmToolkitApp.Controls"
+    xmlns:dialogs="using:PocMvvmToolkitApp.Dialogs">
+    <Style x:Key="DropShadowStyle" TargetType="controls:DropShadowControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DropShadowControl">
+                    <Grid>
+                        <Canvas  x:Name="PART_DropShadowCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter x:Name="PART_ContentPresenter" Content="{TemplateBinding Content}" 
+                                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ExtendedContentDialog" TargetType="dialogs:ExtendedContentDialog">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dialogs:ExtendedContentDialog">
+                    <Grid>
+                        <controls:DropShadowControl>
+                            <Border Padding="20" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Center"  Background="White">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{TemplateBinding Title}" 
+                                               FontSize="20" 
+                                               Margin="0,0,0,5"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" Grid.Row="1"
+                                                      MaxWidth="{TemplateBinding MaxWidth}"
+                                                      MaxHeight="{TemplateBinding MaxHeight}"
+                                                      MinWidth="{TemplateBinding MinWidth}"
+                                                      MinHeight="{TemplateBinding MinHeight}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch" />
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding ButtonAlignment}" Grid.Row="2" Margin="0,20,0,0">
+                                        <Button Style="{TemplateBinding PrimaryButtonStyle}" Content="{TemplateBinding PrimaryButtonText}" Visibility="{TemplateBinding PrimaryButtonVisibility}" Padding="40,2" Background="{StaticResource SystemAccentColor}" Foreground="White" Command="{TemplateBinding PrimaryButtonCommand}" Margin="5,0"/>
+                                        <Button Style="{TemplateBinding SecondaryButtonStyle}" Content="{TemplateBinding SecondaryButtonText}" Visibility="{TemplateBinding SecondaryButtonVisibility}" Padding="40,2" Command="{TemplateBinding SecondaryButtonCommand}" Margin="5,0"/>
+                                        <Button Style="{TemplateBinding ClosedButtonStyle}" Content="{TemplateBinding CloseButtonText}" Visibility="{TemplateBinding ClosedButtonVisibility}" Padding="40,2" Command="{TemplateBinding CloseButtonCommand}" Margin="5,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </controls:DropShadowControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ExtendedFullScreenDialog" TargetType="dialogs:ExtendedContentDialog">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dialogs:ExtendedContentDialog">
+                    <ContentPresenter Content="{TemplateBinding Content}" Grid.Row="1"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      MaxHeight="15000" MaxWidth="15000"
+                                      Margin="{TemplateBinding Padding}"
+                                      ContentTransitions="{TemplateBinding ContentTransitions}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
